@@ -1,16 +1,15 @@
 <template>
-    <div class="bg-gradient-to-br from-purple-900 to-fuchsia-900 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden group">
-        <!-- Background Decoration -->
+    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden group">
         <div class="absolute -right-10 -top-10 w-40 h-40 bg-white opacity-5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-        <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-fuchsia-500 opacity-20 rounded-full blur-xl"></div>
+        <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-gray-600 opacity-20 rounded-full blur-xl"></div>
 
         <div class="relative z-10 flex flex-col items-center text-center">
-            <p class="text-[10px] font-bold text-fuchsia-300 uppercase tracking-widest mb-4">Cố vấn học tập</p>
+            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest mb-4">Cố vấn học tập</p>
             
-            <img src="https://ui-avatars.com/api/?name=Tran+Thi+Mai&background=fff&color=a855f7" alt="Advisor" class="w-20 h-20 rounded-full border-4 border-white/20 shadow-lg mb-3">
+            <img src="https://ui-avatars.com/api/?name=Tran+Thi+Mai&background=fff&color=000000" alt="Advisor" class="w-20 h-20 rounded-full border-4 border-white/20 shadow-lg mb-3">
             
             <h4 class="font-bold text-lg">ThS. Trần Thị Mai</h4>
-            <p class="text-xs text-purple-200 mt-1">Khoa Công nghệ thông tin</p>
+            <p class="text-xs text-gray-300 mt-1">Khoa Công nghệ thông tin</p>
 
             <div class="w-full mt-6 space-y-2">
                 <a href="mailto:ttmai@dangkhoa.uni" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 py-2.5 rounded-xl text-xs font-medium backdrop-blur-sm transition-all border border-white/5">

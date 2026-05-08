@@ -1,20 +1,20 @@
 <template>
-    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-purple-50">
+    <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-200">
         <div class="flex justify-between items-center mb-6">
             <h3 class="font-bold text-gray-800 flex items-center gap-2">
-                <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 Deadline sắp tới
             </h3>
-            <button class="text-xs font-bold text-purple-600 hover:underline">Tất cả bài tập</button>
+            <button class="text-xs font-bold text-gray-800 hover:underline">Tất cả bài tập</button>
         </div>
 
         <div class="space-y-4">
             <div v-for="(task, index) in deadlines" :key="index" 
                  class="p-4 rounded-2xl border transition-all group cursor-pointer"
-                 :class="task.isUrgent ? 'border-orange-100 bg-orange-50/30 hover:bg-orange-50' : 'border-gray-100 hover:border-purple-100 hover:bg-purple-50/50'">
+                 :class="task.isUrgent ? 'border-gray-300 bg-gray-100/50 hover:bg-gray-200' : 'border-gray-100 hover:border-gray-300 hover:bg-gray-50'">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h4 class="text-sm font-bold text-gray-800 group-hover:text-purple-700">{{ task.title }}</h4>
+                        <h4 class="text-sm font-bold text-gray-800 group-hover:text-gray-900">{{ task.title }}</h4>
                         <p class="text-[10px] text-gray-500 mt-1 font-medium">{{ task.subject }}</p>
                     </div>
                     <span :class="task.badgeColor" class="px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider text-white whitespace-nowrap ml-3">
@@ -34,8 +34,8 @@
 import { ref } from 'vue';
 
 const deadlines = ref([
-    { title: 'Báo cáo Đồ án giữa kỳ', subject: 'Lập trình Web nâng cao', dueDate: '15:00 - Hôm nay', timeLeft: 'Còn 3 tiếng', isUrgent: true, badgeColor: 'bg-red-500' },
-    { title: 'Bài tập Thực hành Lab 4', subject: 'Cấu trúc dữ liệu', dueDate: '23:59 - 08/05/2026', timeLeft: 'Còn 2 ngày', isUrgent: false, badgeColor: 'bg-orange-400' },
-    { title: 'Tiểu luận cá nhân', subject: 'Triết học Mác - Lênin', dueDate: '12:00 - 10/05/2026', timeLeft: 'Còn 4 ngày', isUrgent: false, badgeColor: 'bg-blue-400' },
+    { title: 'Báo cáo Đồ án giữa kỳ', subject: 'Lập trình Web nâng cao', dueDate: '15:00 - Hôm nay', timeLeft: 'Còn 3 tiếng', isUrgent: true, badgeColor: 'bg-gray-800' },
+    { title: 'Bài tập Thực hành Lab 4', subject: 'Cấu trúc dữ liệu', dueDate: '23:59 - 08/05/2026', timeLeft: 'Còn 2 ngày', isUrgent: false, badgeColor: 'bg-gray-600' },
+    { title: 'Tiểu luận cá nhân', subject: 'Triết học Mác - Lênin', dueDate: '12:00 - 10/05/2026', timeLeft: 'Còn 4 ngày', isUrgent: false, badgeColor: 'bg-gray-500' },
 ]);
 </script>

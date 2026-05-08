@@ -1,43 +1,55 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import LoginView from '../views/LoginView.vue';
-import HomeView from '../views/HomeView.vue'; // Chắc chắn đã import
-import { useAuthStore } from '../store/authStore';
+import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "../store/authStore";
+import { useAppStore } from "../store/appStore";
+import sinhVienRoutes from "./sinh-vien/index.js";
+import giangVienRoutes from "./giang-vien/index.js";
+import quanLyRoutes from "./quan-ly/index.js";
+
+const routes = [
+  {
+    path: "/dang-nhap",
+    name: "login",
+    component: () => import("../views/LoginView.vue"),
+    meta: { requiresGuest: true },
+  },
+  {
+    path: "/trang-chu",
+    name: "home",
+    component: () => import("../views/DashboardView.vue"),
+    meta: { requiresAuth: false },
+  },
+  ...sinhVienRoutes,
+  ...giangVienRoutes,
+  ...quanLyRoutes,
+  { path: "/", redirect: "/trang-chu" },
+  { path: "/:pathMatch(.*)*", redirect: "/trang-chu" },
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/dang-nhap',
-      name: 'login',
-      component: LoginView,
-      meta: { requiresGuest: true } // Chỉ khách mới vào được
-    },
-    {
-      path: '/trang-chu',  // Đổi thành đúng đường dẫn bạn muốn
-      name: 'home',
-      component: HomeView,
-      meta: { requiresAuth: true } // BẮT BUỘC ĐĂNG NHẬP
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect: '/trang-chu' // Link bậy bạ tự đá về trang chủ
-    }
-  ]
+  routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
+  const appStore = useAppStore();
   const authStore = useAuthStore();
-  const isLogged = authStore.isAuthenticated; 
 
-  if (to.meta.requiresAuth && !isLogged) {
-    // Chưa đăng nhập mà đòi vào trang chủ -> Đẩy ra đăng nhập
-    next({ path: '/dang-nhap' });
-  } else if (to.meta.requiresGuest && isLogged) {
-    // Đã đăng nhập rồi mà cứ đòi vào trang đăng nhập -> Đẩy vào trang chủ
-    next({ path: '/trang-chu' });
-  } else {
-    next(); // Hợp lệ, cho qua
+  appStore.showLoading();
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return { name: "login" };
   }
+
+  if (to.meta.requiresGuest && authStore.isAuthenticated) {
+    return { path: "/trang-chu" };
+  }
+});
+
+router.afterEach(() => {
+  const appStore = useAppStore();
+  setTimeout(() => {
+    appStore.hideLoading();
+  }, 500);
 });
 
 export default router;
